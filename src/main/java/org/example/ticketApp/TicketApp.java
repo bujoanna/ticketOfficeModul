@@ -1,11 +1,11 @@
-package org.example.ticketOffice;
+package org.example.ticketApp;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import static org.example.ticketOffice.Menus.menu;
+import static org.example.ticketApp.Menus.menu;
 
-public class TicketOffice extends Information implements ChooseATicket, SelectTheNumberOfTicket, TODOPay {
+public class TicketApp extends Information implements TicketMachine, TicketService, TODOPay {
     static Scanner scanner = new Scanner(System.in);
     private int choose = menu();
 
@@ -14,10 +14,10 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
         while (choose != 0) {
             switch (choose) {
                 case 1:
-                    information();
+                    printInformation();
                     break;
                 case 2:
-                    information();
+                    printInformation();
                     System.out.println("Wybierz rodzaj biletu:");
                     chooseATicketMenu();
                     break;
@@ -41,7 +41,7 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
 
     @Override
     public void normalTicket() {
-        System.out.println(Price.getYouChosen() + TicketType.NORMALNY + "\n" + Price.getEnterValue());
+        System.out.println(Price.getYouChosen() + TicketType.NORMAL + "\n" + Price.getEnterValue());
         numberOfTicketNormal();
         chooseMore();
 
@@ -49,7 +49,7 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
 
     @Override
     public void reducedTicket() {
-        System.out.println(Price.getYouChosen() + TicketType.ULGOWY + "\n" + Price.getEnterValue());
+        System.out.println(Price.getYouChosen() + TicketType.REDUCED + "\n" + Price.getEnterValue());
         numberOfTicketReduced();
         chooseMore();
     }
@@ -94,7 +94,7 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
         int optionNumber;
         optionNumber = scanner.nextInt();
         if (optionNumber == 1) {
-            information();
+            printInformation();
             chooseATicketMenu();
         } else if (optionNumber == 2) {
             System.out.println(Price.getNormal() + numberNormal);

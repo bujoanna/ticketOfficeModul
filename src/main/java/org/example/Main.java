@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.ticketOffice.TicketOffice;
+import org.example.ticketApp.TicketApp;
 
 public class Main {
     public static void main(String[] args) {
-        TicketOffice ticketOffice = new TicketOffice();
+        TicketApp ticketOffice = new TicketApp();
         ticketOffice.choose();
     }
 }

@@ -1,6 +1,6 @@
-package org.example.ticketOffice;
+package org.example.ticketApp;
 
-public interface ChooseATicket {
+public interface TicketMachine {
 
     void normalTicket();
     void reducedTicket();
