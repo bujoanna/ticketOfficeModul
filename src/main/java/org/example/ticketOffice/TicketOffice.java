@@ -97,9 +97,10 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
             information();
             chooseATicketMenu();
         } else if (optionNumber == 2) {
-            System.out.println("NORMALNY: " + numberNormal);
-            System.out.println("ULGOWY: " + numberReduced);
+            System.out.println(Price.getNormal() + numberNormal);
+            System.out.println(Price.getReduced() + numberReduced);
             System.out.println("Suma wybranych biletów: " + (numberReduced + numberNormal));
+            System.out.println(Price.getPriceToPay() + (numberNormal * Price.getPRICE() + numberReduced * Price.getREDUCED_TICKET()) + Price.getCurrency());
         } else {
             TODOpay();
         }
