@@ -1,44 +1,45 @@
 package org.example.ticketApp;
 
-enum Price {
-    ;
-    private static final int PRICE = 40;
-    private static final int REDUCED_TICKET = Price.getPRICE() / 2;
-    private static String priceToPay = "Cena do zapłaty: ";
-    private static String currency = " zł.";
-    private static String youChosen = "Wybrałeś bilet: ";
-    private static String enterValue = "Wpisz ilość: ";
-    private static String normal = "Bilet normalny ";
-    private static String reduced = "Bilet ulgowy ";
+interface Price {
 
-    static String getNormal() {
-        return normal;
+    int PRICE = 40;
+    int REDUCED_TICKET = Price.getPRICE() / 2;
+    String PRICE_TO_PAY = "Cena do zapłaty: ";
+    String CURRENCY = " zł.";
+    String YOU_CHOSEN = "Wybrałeś bilet: ";
+    String ENTER_VALUE = "Wpisz ilość: ";
+    String NORMAL_TICKET = "Bilet normalny ";
+    String REDUCED = "Bilet ulgowy ";
+
+    static String getNormalTicket() {
+        return NORMAL_TICKET;
     }
 
     static String getReduced() {
-        return reduced;
+        return REDUCED;
     }
 
     static String getYouChosen() {
-        return youChosen;
+        return YOU_CHOSEN;
     }
 
     static String getEnterValue() {
-        return enterValue;
+        return ENTER_VALUE;
     }
 
     static int getPRICE() {
         return PRICE;
     }
 
-    public static int getREDUCED_TICKET() {
+    static int getREDUCED_TICKET() {
         return REDUCED_TICKET;
     }
+
     static String getPriceToPay() {
-        return priceToPay;
+        return PRICE_TO_PAY;
     }
 
     static String getCurrency() {
-        return currency;
+        return CURRENCY;
     }
 }

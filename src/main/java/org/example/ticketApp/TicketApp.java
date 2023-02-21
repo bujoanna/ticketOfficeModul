@@ -97,7 +97,7 @@ public class TicketApp extends Information implements TicketMachine, TicketServi
             printInformation();
             chooseATicketMenu();
         } else if (optionNumber == 2) {
-            System.out.println(Price.getNormal() + numberNormal);
+            System.out.println(Price.getNormalTicket() + numberNormal);
             System.out.println(Price.getReduced() + numberReduced);
             System.out.println("Suma wybranych biletów: " + (numberReduced + numberNormal));
             System.out.println(Price.getPriceToPay() + (numberNormal * Price.getPRICE() + numberReduced * Price.getREDUCED_TICKET()) + Price.getCurrency());
