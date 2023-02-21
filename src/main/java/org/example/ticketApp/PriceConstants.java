@@ -1,9 +1,9 @@
 package org.example.ticketApp;
 
-interface Price {
+interface PriceConstants {
 
     int PRICE = 40;
-    int REDUCED_TICKET = Price.getPRICE() / 2;
+    int REDUCED_TICKET = PriceConstants.getPRICE() / 2;
     String PRICE_TO_PAY = "Cena do zapłaty: ";
     String CURRENCY = " zł.";
     String YOU_CHOSEN = "Wybrałeś bilet: ";
