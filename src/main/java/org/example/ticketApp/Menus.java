@@ -1,4 +1,4 @@
-package org.example.ticketOffice;
+package org.example.ticketApp;
 
 import java.util.Scanner;
 

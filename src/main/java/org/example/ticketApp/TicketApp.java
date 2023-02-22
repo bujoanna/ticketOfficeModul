@@ -1,23 +1,31 @@
-package org.example.ticketOffice;
+package org.example.ticketApp;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import static org.example.ticketOffice.Menus.menu;
+import static org.example.ticketApp.Menus.menu;
+import static org.example.ticketApp.PriceConstants.*;
 
-public class TicketOffice extends Information implements ChooseATicket, SelectTheNumberOfTicket, TODOPay {
+
+public class TicketApp extends Information implements TicketMachine, TicketService, TODOPay {
     static Scanner scanner = new Scanner(System.in);
     private int choose = menu();
+
+    public TicketApp(final String normal, final int numberNormal, final String reduced, final int numberReduced) {
+        super();
+        this.numberNormal = numberNormal;
+        this.numberReduced = numberReduced;
+    }
 
 
     public void choose() {
         while (choose != 0) {
             switch (choose) {
                 case 1:
-                    information();
+                    printInformation();
                     break;
                 case 2:
-                    information();
+                    printInformation();
                     System.out.println("Wybierz rodzaj biletu:");
                     chooseATicketMenu();
                     break;
@@ -40,16 +48,16 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
     }
 
     @Override
-    public void normalTicket() {
-        System.out.println(Price.getYouChosen() + TicketType.NORMALNY + "\n" + Price.getEnterValue());
+    public void chosenAnormalTicket() {
+        System.out.println(YOU_CHOSEN + NORMAL_T + "\n" + ENTER_VALUE);
         numberOfTicketNormal();
         chooseMore();
 
     }
 
     @Override
-    public void reducedTicket() {
-        System.out.println(Price.getYouChosen() + TicketType.ULGOWY + "\n" + Price.getEnterValue());
+    public void chosenAreducedTicket() {
+        System.out.println(YOU_CHOSEN + REDUCED_T + "\n" + ENTER_VALUE);
         numberOfTicketReduced();
         chooseMore();
     }
@@ -59,8 +67,8 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
         int optionNumber;
         optionNumber = scanner.nextInt();
         switch (optionNumber) {
-            case 1 -> normalTicket();
-            case 2 -> reducedTicket();
+            case 1 -> chosenAnormalTicket();
+            case 2 -> chosenAreducedTicket();
             default -> System.out.println("Nie ma takiej możliwości.");
         }
 
@@ -88,18 +96,31 @@ public class TicketOffice extends Information implements ChooseATicket, SelectTh
         System.out.println("Wybrałeś: " + getNumberReduced() + " sztuki/ę ");
     }
 
+    int sumTicketN(int numberNormal) {
+        int sum;
+        sum = this.numberNormal + numberNormal;
+        return sum;
+    }
+
+    int sumTicketR(int numberReduced) {
+        int sum;
+        sum = this.numberReduced + numberReduced;
+        return sum;
+    }
+
     @Override
     public void chooseMore() {
         System.out.println(">> Jeśli chcesz wybrać więcej biletów wpisz: (1) >> \n" + ">> Jeśli chcesz zsumować wybrane bilety:     (2) >> \n" + ">> Jeśli chcesz przejść do zapłaty wciśnij:  (3) >> ");
         int optionNumber;
         optionNumber = scanner.nextInt();
         if (optionNumber == 1) {
-            information();
+            printInformation();
             chooseATicketMenu();
         } else if (optionNumber == 2) {
-            System.out.println("NORMALNY: " + numberNormal);
-            System.out.println("ULGOWY: " + numberReduced);
-            System.out.println("Suma wybranych biletów: " + (numberReduced + numberNormal));
+            System.out.println(NORMAL_T + "- " + sumTicketN(numberNormal));
+            System.out.println(REDUCED_T + "- " + sumTicketR(numberReduced));
+            System.out.println("Suma wybranych biletów: " + (sumTicketN(numberNormal) + sumTicketR(numberReduced)));
+            System.out.println(PRICE_TO_PAY + (sumTicketN(numberNormal) * PRICE + sumTicketR(numberReduced) * REDUCED_TICKET) + CURRENCY);
         } else {
             TODOpay();
         }

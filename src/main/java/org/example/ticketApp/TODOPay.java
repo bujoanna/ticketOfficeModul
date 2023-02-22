@@ -1,4 +1,4 @@
-package org.example.ticketOffice;
+package org.example.ticketApp;
 
  interface TODOPay {
     void TODOpay();
