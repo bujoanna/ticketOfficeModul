@@ -96,6 +96,18 @@ public class TicketApp extends Information implements TicketMachine, TicketServi
         System.out.println("Wybrałeś: " + getNumberReduced() + " sztuki/ę ");
     }
 
+    int sumTicketN(int numberNormal) {
+        int sum;
+        sum = this.numberNormal + numberNormal;
+        return sum;
+    }
+
+    int sumTicketR(int numberReduced) {
+        int sum;
+        sum = this.numberReduced + numberReduced;
+        return sum;
+    }
+
     @Override
     public void chooseMore() {
         System.out.println(">> Jeśli chcesz wybrać więcej biletów wpisz: (1) >> \n" + ">> Jeśli chcesz zsumować wybrane bilety:     (2) >> \n" + ">> Jeśli chcesz przejść do zapłaty wciśnij:  (3) >> ");
@@ -105,10 +117,10 @@ public class TicketApp extends Information implements TicketMachine, TicketServi
             printInformation();
             chooseATicketMenu();
         } else if (optionNumber == 2) {
-            System.out.println(NORMAL_T + numberNormal);
-            System.out.println(REDUCED_T + numberReduced);
-            System.out.println("Suma wybranych biletów: " + (numberReduced + numberNormal));
-            System.out.println(PRICE_TO_PAY + (numberNormal * PRICE + numberReduced * REDUCED_TICKET) + CURRENCY);
+            System.out.println(NORMAL_T + "- " + sumTicketN(numberNormal));
+            System.out.println(REDUCED_T + "- " + sumTicketR(numberReduced));
+            System.out.println("Suma wybranych biletów: " + (sumTicketN(numberNormal) + sumTicketR(numberReduced)));
+            System.out.println(PRICE_TO_PAY + (sumTicketN(numberNormal) * PRICE + sumTicketR(numberReduced) * REDUCED_TICKET) + CURRENCY);
         } else {
             TODOpay();
         }
