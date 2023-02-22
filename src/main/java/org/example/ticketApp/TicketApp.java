@@ -4,10 +4,18 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import static org.example.ticketApp.Menus.menu;
+import static org.example.ticketApp.PriceConstants.*;
+
 
 public class TicketApp extends Information implements TicketMachine, TicketService, TODOPay {
     static Scanner scanner = new Scanner(System.in);
     private int choose = menu();
+
+    public TicketApp(final String normal, final int numberNormal, final String reduced, final int numberReduced) {
+        super();
+        this.numberNormal = numberNormal;
+        this.numberReduced = numberReduced;
+    }
 
 
     public void choose() {
@@ -41,7 +49,7 @@ public class TicketApp extends Information implements TicketMachine, TicketServi
 
     @Override
     public void chosenAnormalTicket() {
-        System.out.println(PriceConstants.getYouChosen() + TicketType.NORMAL + "\n" + PriceConstants.getEnterValue());
+        System.out.println(YOU_CHOSEN + NORMAL_T + "\n" + ENTER_VALUE);
         numberOfTicketNormal();
         chooseMore();
 
@@ -49,7 +57,7 @@ public class TicketApp extends Information implements TicketMachine, TicketServi
 
     @Override
     public void chosenAreducedTicket() {
-        System.out.println(PriceConstants.getYouChosen() + TicketType.REDUCED + "\n" + PriceConstants.getEnterValue());
+        System.out.println(YOU_CHOSEN + REDUCED_T + "\n" + ENTER_VALUE);
         numberOfTicketReduced();
         chooseMore();
     }
@@ -97,10 +105,10 @@ public class TicketApp extends Information implements TicketMachine, TicketServi
             printInformation();
             chooseATicketMenu();
         } else if (optionNumber == 2) {
-            System.out.println(PriceConstants.getNormalTicket() + numberNormal);
-            System.out.println(PriceConstants.getReduced() + numberReduced);
+            System.out.println(NORMAL_T + numberNormal);
+            System.out.println(REDUCED_T + numberReduced);
             System.out.println("Suma wybranych biletów: " + (numberReduced + numberNormal));
-            System.out.println(PriceConstants.getPriceToPay() + (numberNormal * PriceConstants.getPRICE() + numberReduced * PriceConstants.getREDUCED_TICKET()) + PriceConstants.getCurrency());
+            System.out.println(PRICE_TO_PAY + (numberNormal * PRICE + numberReduced * REDUCED_TICKET) + CURRENCY);
         } else {
             TODOpay();
         }
